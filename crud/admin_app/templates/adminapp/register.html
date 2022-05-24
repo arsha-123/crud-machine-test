@@ -1,0 +1,245 @@
+{% extends 'adminapp/dashboard.html' %}
+{% load static %}
+{% block admin_dashboard %}
+
+
+
+<style>
+        .main{
+            width: 700px;
+            height: 730px;
+            background-color: rgb(236, 197, 236);
+            margin-left: 200px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border: solid 2px #a70278;
+            padding-left: 30px;
+
+        }
+        .form-control{
+            background-color: rgb(236, 197, 236);
+            border: solid 1px rgb(180, 54, 144);
+            margin-top: 20px;
+            width: 400px;
+            margin-left: 80px;
+        }
+        label{
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        h1{
+            text-align: center;
+        }
+        .btn{
+            background-color: rgb(236, 197, 236);
+            border: solid 1px rgb(180, 54, 144);
+            color: black;
+            font-weight: bold;
+            margin-left: 250px;
+            width: 200px;
+            margin-top: 20px;
+           
+
+        }
+        
+    </style>
+</head>
+<body> 
+    <div class="main">
+        <h1>Register Student</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row mb-3">
+              <label for="inputuser" class="col-sm-2 col-form-label" id="form">Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" name="b_name">
+                <span id="name_span" style="margin-left: 70px;"></span>
+              </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputuser" class="col-sm-2 col-form-label" id="form">Contact</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="contact" name="b_contact">
+                  <span id="contact_span" style="margin-left: 70px;"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputuser" class="col-sm-2 col-form-label" id="form">Email</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="email" name="b_email">
+                  <span id="email_span"style="margin-left: 70px;"></span>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputuser" class="col-sm-2 col-form-label" id="form">Username</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="username" name="b_username">
+                  <span id="username_span"style="margin-left: 70px;"></span>
+                </div>
+              </div>
+            <div class="row mb-3">
+              <label for="inputPassword3" class="col-sm-2 col-form-label input">Password</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="password" name="b_password">
+                <span id="password_span"style="margin-left: 70px;"></span>
+              </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputuser" class="col-sm-2 col-form-label" id="form">Confirm Password</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="cpassword">
+                  <span id="cpassword_span"style="margin-left: 70px;"></span>
+                </div>
+              </div>
+            <button type="submit" class="btn btn-primary"  onclick="return register()">Add student</button>
+          </form>
+    </div>
+</body>
+
+
+<script>
+
+function register(){
+
+returnStatus = 1;
+
+var name1=document.getElementById('name')
+var name_s=document.getElementById("name_span")
+
+var contact1=document.getElementById('contact')
+var contact_s=document.getElementById("contact_span")
+
+var email1=document.getElementById('email')
+var email_s=document.getElementById("email_span")
+
+var username1=document.getElementById('username')
+var username_s=document.getElementById("username_span")
+
+var password1=document.getElementById('password')
+var password_s=document.getElementById("password_span")
+
+var cpassword1=document.getElementById('cpassword')
+var cpassword_s=document.getElementById("cpassword_span")
+
+
+
+
+if(name1.value == ""){
+    name_s.innerHTML="*please fill the name"
+    name_s.style.color="red"
+    name1.style.border="solid 1px red"
+    returnStatus = 0
+   
+   }
+else{
+   name_s.innerHTML=""
+   name1.style.border="solid 1px black"
+   }
+
+
+
+
+
+if(contact1.value== ""){
+    contact_s.innerHTML="*please fill the department"
+    contact_s.style.color="red"
+    contact1.style.border="solid 1px red"
+    returnStatus = 0
+    }
+else{
+    contact_s.innerHTML=""
+    contact1.style.border="solid 1px black"
+    }
+
+
+
+
+
+
+ if(email1.value == ""){
+    email_s.innerHTML="*please fill the gender"
+    email_s.style.color="red"
+    email1.style.border="solid 1px red"
+    returnStatus = 0
+    }
+else{
+    email_s.innerHTML=""
+    email1.style.border="solid 1px black"
+    }
+
+
+
+
+
+ if(username1.value == ""){
+    username_s.innerHTML="*please fill the date of birth"
+    username_s.style.color="red"
+    username1.style.border="solid 1px red"
+    returnStatus = 0
+    }
+else{
+    username_s.innerHTML=""
+    username1.style.border="solid 1px black"
+    }   
+    
+
+
+
+
+
+
+
+
+
+    if(password1.value == ""){
+        password_s.innerHTML="*please fill the password"
+        password_s.style.color="red"
+        password1.style.border="solid 1px red"
+        returnStatus = 0
+       }
+    else if(password1.value.length<8){
+        password_s.innerHTML="*should contain 8 characters"
+        password_s.style.color="red"
+        password1.style.border="solid 1px red"
+        returnStatus = 0
+     }
+    else{
+        password_s.innerHTML=""
+        password1.style.border="solid 1px black"  
+     }
+
+
+
+
+
+   if(cpassword1.value == ""){
+    cpassword_s.innerHTML="*please fill the password"
+    cpassword_s.style.color="red"
+    cpassword1.style.border="solid 1px red"
+    returnStatus = 0       
+    }
+   else if(password1.value!=cpassword1.value){
+    cpassword_s.innerHTML="*password does not match"
+    cpassword_s.style.color="red"
+    cpassword1.style.border="solid 1px red"
+    returnStatus = 0
+
+   }
+   else {
+    cpassword_s.innerHTML=""
+    cpassword1.style.border="solid 1px black"
+   }
+
+
+
+
+
+if (returnStatus == 0) {
+return false
+}  
+
+}
+
+
+</script>
+{% endblock %}
